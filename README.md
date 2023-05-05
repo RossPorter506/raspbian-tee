@@ -58,8 +58,8 @@ $ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 9
 /raspbian-tee/linux/scripts/dtc/dtc-lexel.lex.c 	(at line 634) 
 ```
 ```
-    (-) `YYLTYPE yylloc;`
-    (+) `extern YYLTYPE yylloc;`
+  (-) YYLTYPE yylloc;
+  (+) extern YYLTYPE yylloc;
 ```
 - Final stages of compilation required the following tool to be installed
 ```
