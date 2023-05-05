@@ -37,7 +37,7 @@ $ make
 	
 When success, it should seem as (run one-level up):
 
-![](https://github.com/benhaz1024/raspbian-tee/blob/master/doc/raspbian-tee-output.jpg)
+![](https://github.com/kostas00t/raspbian-tee/blob/master/doc/raspbian-tee-output.jpg)
 
 
 ##### Problems occured while running the building commands
