@@ -92,10 +92,10 @@ $ sudo umount /dev/sda2 			     # Change sda2 to the appropriate microSD partiti
 ---
 ### Boot up the RPi3 using the microSD with the modified image
 
-From the HDMI output we can see the regular Raspbian REE
-From the UART output we can see the terminal for the OP-TEE OS 
--- (run from building pc after connecting the RPi3 through the UART interface:  `$ sudo picocom -b 115200 /dev/ttyUSB0`)
-After logging in, run the following commands from REE to test that everything works as intended.
+- From the HDMI output we can see the regular Raspbian REE
+- From the UART output we can see the terminal for the OP-TEE OS 
+	- (run from building pc after connecting the RPi3 through the UART interface:  `$ sudo picocom -b 115200 /dev/ttyUSB0`)
+- After logging in, run the following commands from REE to test that everything works as intended.
 ```
 $ ls /dev/tee*
 /dev/tee0 /dev/teepriv0 	# this prove tee driver & optee-os works.
