@@ -94,7 +94,7 @@ $ sudo umount /dev/sda2 			     # Change sda2 to the appropriate microSD partiti
 
 From the HDMI output we can see the regular Raspbian REE
 From the UART output we can see the terminal for the OP-TEE OS 
--- (run from building pc after connecting the RPi3 through the UART interface:  $ sudo picocom -b 115200 /dev/ttyUSB0)
+-- (run from building pc after connecting the RPi3 through the UART interface:  `$ sudo picocom -b 115200 /dev/ttyUSB0`)
 After logging in, run the following commands from REE to test that everything works as intended.
 ```
 $ ls /dev/tee*
