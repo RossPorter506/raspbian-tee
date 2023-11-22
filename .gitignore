@@ -1,0 +1,17 @@
+optee_client/
+
+arm-trusted-firmware/
+
+linux/
+
+optee_os/
+
+u-boot/
+
+optee_examples/
+
+dl/
+
+out/
+
+gcc-*/
