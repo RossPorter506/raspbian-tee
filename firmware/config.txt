@@ -61,3 +61,4 @@ kernel_address=0x02000000
 
 device_tree_address=0x01000000
 
+arm_64bit=1

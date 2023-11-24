@@ -166,6 +166,9 @@ linux-final: linux-uimage
 .PHONY: boot-final
 boot-final:
 	cp ${TEE_SDK_DIR}/firmware/config.txt ./out/boot/
+	cp ${TEE_SDK_DIR}/rpi-firmware/boot/bootcode.bin ./out/boot/
+	cp ${TEE_SDK_DIR}/rpi-firmware/boot/start* ./out/boot/
+	cp ${TEE_SDK_DIR}/rpi-firmware/boot/fixup* ./out/boot/
 
 .PHONY: patch
 patch: atf-patch linux-patch
@@ -178,3 +181,15 @@ atf-patch:
 linux-patch:
 	patch ${TEE_SDK_DIR}/linux/arch/arm/boot/dts/bcm2710.dtsi ${TEE_SDK_DIR}/patch/bcm2710.dtsi.patch
 	patch ${TEE_SDK_DIR}/linux/arch/arm/configs/bcm2709_defconfig ${TEE_SDK_DIR}/patch/bcm2709_defconfig.patch
+# RPi 3B+ Rev 1.4 won't boot with old firmware. Copy over just the firmware so we can boot Rasbian and it can do it's first time boot process.
+.PHONY: before-first-boot-setup
+before-first-boot-setup:
+	cp ${TEE_SDK_DIR}/out/boot/bootcode.bin ${SDCARD_BOOTFS}
+	cp ${TEE_SDK_DIR}/out/boot/start* ${SDCARD_BOOTFS}
+	cp ${TEE_SDK_DIR}/out/boot/fixup* ${SDCARD_BOOTFS}
+
+# Once Raspbian has had a chance to do it's first-time setup we copy over everything we need
+.PHONY: after-first-boot-setup
+after-first-boot-setup:
+	cp -r ${TEE_SDK_DIR}/out/boot/* ${SDCARD_BOOTFS}
+	sudo cp -ra ${TEE_SDK_DIR}/out/rootfs/* ${SDCARD_ROOTFS}

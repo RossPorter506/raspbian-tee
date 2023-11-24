@@ -91,3 +91,17 @@
 	}
 }
 
+[ -f "./dl/rpi-firmware.tar.gz" ] && {
+	echo  "\033[32mrpi firmware existed.\n\033[0m"
+} || {
+	echo  "\033[32mrpi firmware...\n\033[0m"
+	wget -O dl/rpi-firmware.tar.gz https://github.com/raspberrypi/firmware/archive/refs/tags/1.20230405.tar.gz
+}
+
+[ ! -d "./rpi-firmware" ] && {
+	tar zxf dl/rpi-firmware.tar.gz && {
+		mv firmware-* rpi-firmware
+	}
+}
+
+
