@@ -1,0 +1,12 @@
+--- platform.mk.old	2023-11-24 18:15:31.864652626 +1300
++++ platform.mk	2023-11-24 18:16:48.688391894 +1300
+@@ -7,8 +7,7 @@
+ PLAT_INCLUDES		:=	-Iinclude/common/tbbr			\
+ 				-Iplat/rpi3/include
+ 
+-PLAT_BL_COMMON_SOURCES	:=	drivers/console/aarch64/console.S	\
+-				drivers/ti/uart/aarch64/16550_console.S	\
++PLAT_BL_COMMON_SOURCES	:=	drivers/arm/pl011/aarch64/pl011_console.S	\
+ 				plat/rpi3/rpi3_common.c
+ 
+ BL1_SOURCES		+=	drivers/io/io_fip.c			\

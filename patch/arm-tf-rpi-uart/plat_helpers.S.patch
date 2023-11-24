@@ -1,0 +1,29 @@
+--- plat_helpers.S.old	2023-11-24 18:17:38.445324597 +1300
++++ plat_helpers.S	2023-11-24 18:17:56.278753823 +1300
+@@ -137,7 +137,7 @@
+ 	mov_imm	x0, PLAT_RPI3_UART_BASE
+ 	mov_imm	x1, PLAT_RPI3_UART_CLK_IN_HZ
+ 	mov_imm	x2, PLAT_RPI3_UART_BAUDRATE
+-	b	console_16550_core_init
++	b	console_pl011_core_init
+ endfunc plat_crash_console_init
+ 
+ 	/* ---------------------------------------------
+@@ -149,7 +149,7 @@
+ 	 */
+ func plat_crash_console_putc
+ 	mov_imm	x1, PLAT_RPI3_UART_BASE
+-	b	console_16550_core_putc
++	b	console_pl011_core_putc
+ endfunc plat_crash_console_putc
+ 
+ 	/* ---------------------------------------------
+@@ -162,7 +162,7 @@
+ 	 */
+ func plat_crash_console_flush
+ 	mov_imm	x0, PLAT_RPI3_UART_BASE
+-	b	console_16550_core_flush
++	b	console_pl011_core_flush
+ endfunc plat_crash_console_flush
+ 
+ 	/* ---------------------------------------------

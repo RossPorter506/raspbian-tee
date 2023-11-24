@@ -171,11 +171,20 @@ boot-final:
 	cp ${TEE_SDK_DIR}/rpi-firmware/boot/fixup* ./out/boot/
 
 .PHONY: patch
-patch: atf-patch linux-patch
+patch: atf-patch linux-patch atf-uart-patch
 
 .PHONY: atf-patch
 atf-patch:
 	patch ${TEE_SDK_DIR}/arm-trusted-firmware/plat/rpi3/platform.mk ${TEE_SDK_DIR}/patch/platform.mk.patch
+
+# Patch atf to use PL011 UART instead of mini
+.PHONY: atf-uart-patch
+atf-uart-patch:
+	patch ${TEE_SDK_DIR}/arm-trusted-firmware/plat/rpi3/platform.mk ${TEE_SDK_DIR}/patch/arm-tf-rpi-uart/platform.mk.patch
+	patch ${TEE_SDK_DIR}/arm-trusted-firmware/plat/rpi3/aarch64/plat_helpers.S ${TEE_SDK_DIR}/patch/arm-tf-rpi-uart/plat_helpers.S.patch
+	patch ${TEE_SDK_DIR}/arm-trusted-firmware/plat/rpi3/include/platform_def.h ${TEE_SDK_DIR}/patch/arm-tf-rpi-uart/platform_def.h.patch
+	patch ${TEE_SDK_DIR}/arm-trusted-firmware/plat/rpi3/rpi3_common.c ${TEE_SDK_DIR}/patch/arm-tf-rpi-uart/rpi3_common.c.patch
+	patch ${TEE_SDK_DIR}/arm-trusted-firmware/plat/rpi3/rpi3_hw.h ${TEE_SDK_DIR}/patch/arm-tf-rpi-uart/rpi3_hw.h.patch
 
 .PHONY: linux-patch
 linux-patch:
