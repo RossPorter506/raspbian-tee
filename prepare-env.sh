@@ -29,7 +29,7 @@
 	echo  "\033[32mu-boot package existed.\n\033[0m"
 } || {
 	echo  "\033[32mu-boot downloading...\n\033[0m"
-	wget -O dl/u-boot.tar.gz https://github.com/u-boot/u-boot/archive/v2018.11.tar.gz
+	wget -O dl/u-boot.tar.gz https://github.com/u-boot/u-boot/archive/v2020.10.tar.gz
 }
 
 [ ! -d "./u-boot" ] && {
