@@ -94,6 +94,7 @@ optee-os-clean:
 ################################################################################
 OPTEE_CLIENT_FLAGS ?= CROSS_COMPILE=$(CROSS_COMPILE) \
 	CFG_TEE_BENCHMARK=n \
+	WITH_TEEACL=0 \
 
 .PHONY: optee-client
 optee-client:
@@ -123,7 +124,7 @@ install:
 optee-examples:
 	$(MAKE) -C ${TEE_SDK_DIR}/optee_examples \
 HOST_CROSS_COMPILE=${CROSS_COMPILE} \
-TEEC_EXPORT=${TEE_SDK_DIR}/optee_client/out/export \
+TEEC_EXPORT=${TEE_SDK_DIR}/optee_client/out/export/usr \
 TA_DEV_KIT_DIR=${TEE_SDK_DIR}/optee_os/out/arm/export-ta_arm32
 
 .PHONY: optee-examples-final

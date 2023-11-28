@@ -42,7 +42,7 @@
 	echo  "\033[32moptee_os package existed.\n\033[0m"
 } || {
 	echo  "\033[32moptee_os downloading...\n\033[0m"
-	wget -O dl/optee_os.tar.gz https://github.com/OP-TEE/optee_os/archive/3.4.0.tar.gz
+	wget -O dl/optee_os.tar.gz https://github.com/OP-TEE/optee_os/archive/3.20.0.tar.gz
 }
 
 [ ! -d "./optee_os" ] && {
@@ -56,7 +56,7 @@
 	echo  "\033[32moptee_client package existed.\n\033[0m"
 } || {
 	echo  "\033[32moptee_client downloading...\n\033[0m"
-	wget -O dl/optee_client.tar.gz https://github.com/OP-TEE/optee_client/archive/3.3.0.tar.gz
+	wget -O dl/optee_client.tar.gz https://github.com/OP-TEE/optee_client/archive/3.20.0.tar.gz
 }
 
 [ ! -d "./optee_client" ] && {
@@ -69,7 +69,7 @@
 	echo  "\033[32moptee_examples package existed.\n\033[0m"
 } || {
 	echo  "\033[32moptee_examples downloading...\n\033[0m"
-	wget -O dl/optee_examples.tar.gz https://github.com/linaro-swg/optee_examples/archive/3.3.0.tar.gz
+	wget -O dl/optee_examples.tar.gz https://github.com/linaro-swg/optee_examples/archive/3.20.0.tar.gz
 }
 
 [ ! -d "./optee_examples" ] && {
