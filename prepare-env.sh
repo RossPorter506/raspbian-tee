@@ -78,6 +78,16 @@
 	}
 }
 
+[ ! -d "./optee_rust" ] && {
+	echo  "\033[32mpulling optee_rust...\n\033[0m"
+	git init optee_rust
+	cd optee_rust
+	git fetch --depth=1 https://github.com/apache/incubator-teaclave-trustzone-sdk b2fbfb008d426349c5ad31bac4857174522dd89c:refs/heads/main
+	git checkout main
+	OPTEE_DIR=$(pwd) ./setup.sh
+	cd ..
+}
+
 [ -f "./dl/linux.tar.gz" ] && {
 	echo  "\033[32mlinux package existed.\n\033[0m"
 } || {

@@ -14,6 +14,8 @@ dl/
 
 out/
 
-gcc-*/
+toolchains/
 
 rpi-firmware/
+
+optee_rust/
