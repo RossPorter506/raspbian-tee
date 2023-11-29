@@ -230,12 +230,12 @@ linux-patch:
 # RPi 3B+ Rev 1.4 won't boot with old firmware. Copy over just the firmware so we can boot Rasbian and it can do it's first time boot process.
 .PHONY: before-first-boot-setup
 before-first-boot-setup:
-	cp ${TEE_SDK_DIR}/out/boot/bootcode.bin ${SDCARD_BOOTFS}
-	cp ${TEE_SDK_DIR}/out/boot/start* ${SDCARD_BOOTFS}
-	cp ${TEE_SDK_DIR}/out/boot/fixup* ${SDCARD_BOOTFS}
+	cp ${TEE_SDK_DIR}/out/boot/bootcode.bin ${SDCARD_BOOTFS}/
+	cp ${TEE_SDK_DIR}/out/boot/start* ${SDCARD_BOOTFS}/
+	cp ${TEE_SDK_DIR}/out/boot/fixup* ${SDCARD_BOOTFS}/
 
 # Once Raspbian has had a chance to do it's first-time setup we copy over everything we need
 .PHONY: after-first-boot-setup
 after-first-boot-setup:
-	cp -r ${TEE_SDK_DIR}/out/boot/* ${SDCARD_BOOTFS}
-	sudo cp -ra ${TEE_SDK_DIR}/out/rootfs/* ${SDCARD_ROOTFS}
+	cp -r ${TEE_SDK_DIR}/out/boot/* ${SDCARD_BOOTFS}/
+	sudo cp -ra ${TEE_SDK_DIR}/out/rootfs/* ${SDCARD_ROOTFS}/
