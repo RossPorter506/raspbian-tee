@@ -12,6 +12,38 @@
     mkdir out/rootfs/lib/optee_armtz
 }
 
+[ ! -d "./toolchains" ] && {
+	mkdir toolchains
+}
+
+[ -f "./dl/toolchain_aarch32.tar.xz" ] && {
+	echo  "\033[32m32-bit toolchain existed.\n\033[0m"
+} || {
+	echo  "\033[32m32-bit toolchain downloading...\n\033[0m"
+	wget -O dl/toolchain_aarch32.tar.xz https://releases.linaro.org/components/toolchain/binaries/7.5-2019.12/arm-linux-gnueabihf/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf.tar.xz
+}
+
+[ ! -d "./toolchains/aarch32" ] && {
+	echo  "\033[32mextracting 32-bit toolchain...\n\033[0m"
+	tar -xf dl/toolchain_aarch32.tar.xz && {
+		mv gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf ./toolchains/aarch32
+	}
+}
+
+[ -f "./dl/toolchain_aarch64.tar.xz" ] && {
+	echo  "\033[32m64-bit toolchain existed.\n\033[0m"
+} || {
+	echo  "\033[32m64-bit toolchain downloading...\n\033[0m"
+	wget -O dl/toolchain_aarch64.tar.xz https://releases.linaro.org/components/toolchain/binaries/7.5-2019.12/aarch64-linux-gnu/gcc-linaro-7.5.0-2019.12-x86_64_aarch64-linux-gnu.tar.xz
+}
+
+[ ! -d "./toolchains/aarch64" ] && {
+	echo  "\033[32mextracting 64-bit toolchain...\n\033[0m"
+	tar -xf dl/toolchain_aarch64.tar.xz && {
+		mv gcc-linaro-7.5.0-2019.12-x86_64_aarch64-linux-gnu ./toolchains/aarch64
+	}
+}
+
 [ -f "./dl/arm-trusted-firmware.tar.gz" ] && {
 	echo  "\033[32marm-trusted-firmware package existed.\n\033[0m"
 } || {
