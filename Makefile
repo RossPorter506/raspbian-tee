@@ -1,3 +1,5 @@
+SHELL := /bin/bash
+
 TEE_SDK_DIR=$(shell pwd)
 include ${TEE_SDK_DIR}/config.mk
 
@@ -94,6 +96,7 @@ optee-os-clean:
 ################################################################################
 OPTEE_CLIENT_FLAGS ?= CROSS_COMPILE=$(CROSS_COMPILE) \
 	CFG_TEE_BENCHMARK=n \
+	WITH_TEEACL=0 \
 
 .PHONY: optee-client
 optee-client:
@@ -123,7 +126,7 @@ install:
 optee-examples:
 	$(MAKE) -C ${TEE_SDK_DIR}/optee_examples \
 HOST_CROSS_COMPILE=${CROSS_COMPILE} \
-TEEC_EXPORT=${TEE_SDK_DIR}/optee_client/out/export \
+TEEC_EXPORT=${TEE_SDK_DIR}/optee_client/out/export/usr \
 TA_DEV_KIT_DIR=${TEE_SDK_DIR}/optee_os/out/arm/export-ta_arm32
 
 .PHONY: optee-examples-final
@@ -141,6 +144,38 @@ optee-examples-final: optee-examples
 	cp ${TEE_SDK_DIR}/optee_examples/random/ta/*.ta ./out/rootfs/lib/optee_armtz/
 	cp ${TEE_SDK_DIR}/optee_examples/secure_storage/ta/*.ta ./out/rootfs/lib/optee_armtz/
 
+################################################################################
+# OP-TEE Rust examples
+################################################################################
+RUST_EXAMPLES = $(wildcard optee_rust/examples/*)
+RUST_EXAMPLES_INSTALL = $(RUST_EXAMPLES:%=%-install)
+RUST_EXAMPLES_CLEAN  = $(RUST_EXAMPLES:%=%-clean)
+
+HOST_TARGET := arm-unknown-linux-gnueabihf
+TA_TARGET := arm-unknown-optee-trustzone
+
+.PHONY: rust-examples
+rust-examples: $(RUST_EXAMPLES)
+
+.PHONY: $(RUST_EXAMPLES)
+$(RUST_EXAMPLES): optee-os optee-client
+	export ARCH=arm OPTEE_DIR=$(TEE_SDK_DIR) && \
+	cd optee_rust && \
+	source $(TEE_SDK_DIR)/optee_rust/environment && \
+	cd .. && \
+	$(MAKE) -C $@
+
+rust-examples-install: $(RUST_EXAMPLES_INSTALL)
+$(RUST_EXAMPLES_INSTALL):
+	install -D $(@:%-install=%)/host/target/$(HOST_TARGET)/release/$(@:optee_rust/examples/%-install=%) -t out/rootfs/bin/
+	install -D $(@:%-install=%)/ta/target/$(TA_TARGET)/release/*.ta -t out/rootfs/lib/optee_armtz/
+	if [ -d "$(@:%-install=%)/plugin/target/" ]; then \
+		install -D $(@:%-install=%)/plugin/target/$(HOST_TARGET)/release/*.plugin.so -t out/rootfs/usr/lib/tee-supplicant/plugins/; \
+	fi
+
+rust-examples-clean: $(RUST_EXAMPLES_CLEAN) out-clean
+$(RUST_EXAMPLES_CLEAN):
+	make -C $(@:-clean=) clean
 ################################################################################
 # linux
 ################################################################################

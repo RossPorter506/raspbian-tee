@@ -42,7 +42,7 @@
 	echo  "\033[32moptee_os package existed.\n\033[0m"
 } || {
 	echo  "\033[32moptee_os downloading...\n\033[0m"
-	wget -O dl/optee_os.tar.gz https://github.com/OP-TEE/optee_os/archive/3.4.0.tar.gz
+	wget -O dl/optee_os.tar.gz https://github.com/OP-TEE/optee_os/archive/3.20.0.tar.gz
 }
 
 [ ! -d "./optee_os" ] && {
@@ -56,7 +56,7 @@
 	echo  "\033[32moptee_client package existed.\n\033[0m"
 } || {
 	echo  "\033[32moptee_client downloading...\n\033[0m"
-	wget -O dl/optee_client.tar.gz https://github.com/OP-TEE/optee_client/archive/3.3.0.tar.gz
+	wget -O dl/optee_client.tar.gz https://github.com/OP-TEE/optee_client/archive/3.20.0.tar.gz
 }
 
 [ ! -d "./optee_client" ] && {
@@ -69,13 +69,23 @@
 	echo  "\033[32moptee_examples package existed.\n\033[0m"
 } || {
 	echo  "\033[32moptee_examples downloading...\n\033[0m"
-	wget -O dl/optee_examples.tar.gz https://github.com/linaro-swg/optee_examples/archive/3.3.0.tar.gz
+	wget -O dl/optee_examples.tar.gz https://github.com/linaro-swg/optee_examples/archive/3.20.0.tar.gz
 }
 
 [ ! -d "./optee_examples" ] && {
 	tar zxf dl/optee_examples.tar.gz && {
 		mv optee_examples-* optee_examples
 	}
+}
+
+[ ! -d "./optee_rust" ] && {
+	echo  "\033[32mpulling optee_rust...\n\033[0m"
+	git init optee_rust
+	cd optee_rust
+	git fetch --depth=1 https://github.com/apache/incubator-teaclave-trustzone-sdk b2fbfb008d426349c5ad31bac4857174522dd89c:refs/heads/main
+	git checkout main
+	OPTEE_DIR=$(pwd) ./setup.sh
+	cd ..
 }
 
 [ -f "./dl/linux.tar.gz" ] && {
