@@ -1,5 +1,7 @@
+### This fork is designed for the Rpi 3B+ Rev1.4 board, which is incompatible with old firmware used in the other repo(s). 
+### Documentation coming soon. Below is the README from the original repo.
+##### fork from https://github.com/kostas00t/raspbian-tee
 # Instructions to load RaspbianTEE on RPi3
-##### fork from https://github.com/benhaz1024/raspbian-tee
 ---
 ### Prerequisites
 - Raspbian 32bit image (newer versions don't work, 2018-03-13-raspbian-stretch image works)
