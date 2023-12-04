@@ -225,7 +225,7 @@ atf-uart-patch:
 linux-patch:
 	patch ${TEE_SDK_DIR}/linux/arch/arm/boot/dts/bcm2710.dtsi ${TEE_SDK_DIR}/patch/bcm2710.dtsi.patch
 	patch ${TEE_SDK_DIR}/linux/arch/arm/configs/bcm2709_defconfig ${TEE_SDK_DIR}/patch/bcm2709_defconfig.patch
-	patch ${TEE_SDK_DIR}/linux/scripts/dtc/dtc-lexer.lex.c ${TEE_SDK_DIR}/patch/dtc-lexer.lex.c.patch
+	patch ${TEE_SDK_DIR}/linux/scripts/dtc/dtc-lexer.lex.c_shipped ${TEE_SDK_DIR}/patch/dtc-lexer.lex.c_shipped.patch
 
 # RPi 3B+ Rev 1.4 won't boot with old firmware. Copy over just the firmware so we can boot Rasbian and it can do it's first time boot process.
 .PHONY: before-first-boot-setup

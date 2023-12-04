@@ -1,5 +1,5 @@
---- dtc-lexer.lex.c	2023-11-23 11:22:37.659216061 +1300
-+++ "dtc-lexer.lex copy.c"	2023-11-23 11:34:55.136012513 +1300
+--- dtc-lexer.lex.c_shipped.bak	2023-12-05 02:16:25.138222232 +1300
++++ dtc-lexer.lex.c_shipped	2023-12-05 02:16:48.925186703 +1300
 @@ -631,7 +631,7 @@
  #include "srcpos.h"
  #include "dtc-parser.tab.h"
