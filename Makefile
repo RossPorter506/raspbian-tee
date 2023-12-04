@@ -238,4 +238,4 @@ before-first-boot-setup:
 .PHONY: after-first-boot-setup
 after-first-boot-setup:
 	cp -r ${TEE_SDK_DIR}/out/boot/* ${SDCARD_BOOTFS}/
-	sudo cp -ra ${TEE_SDK_DIR}/out/rootfs/* ${SDCARD_ROOTFS}/
+	sudo rsync -aAHXK ${TEE_SDK_DIR}/out/rootfs/* ${SDCARD_ROOTFS}/
