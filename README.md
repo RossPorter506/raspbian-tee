@@ -1,4 +1,4 @@
-# Run OP-TEE Alongside 2023 Raspbian on a Modern RPi3B+ Revision (Tested with Rev1.4)
+# Run OP-TEE Alongside 2023 Raspbian on a Modern RPi3B+ Board (Tested with Rev1.4)
 The upstream repositor(ies) are rather out of date, and targets a 2018 version of Raspbian, and does not boot at all on modern revisions of the RPi3B+ board due to outdated firmware. This fork attempts to solve these problems.
 
 ## Prerequisites
